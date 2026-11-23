@@ -1,0 +1,109 @@
+{
+  "name": "libfuji",
+  "isDraft": true,
+  "description": "Supports Fujifilm X-series cameras",
+  "website": "https://github.com/petabyt/libfuji",
+  "license": "MIT",
+  "author": "Daniel Cook",
+  "version": 1,
+  "moduleType": "so",
+  "modulePath": "libfuji.so",
+  "targets": [
+    {
+      "deviceType": "professional-camera",
+      "company": "Fujifilm",
+      "summary": "All Fujifilm digital cameras",
+      "wifiFilters": [{
+        "ssidPattern": "FUJIFILM-.*"
+      }],
+      "requiresFullMfgData": true,
+      "bluetoothFilters": [
+        {
+          "serviceUuids": [
+            "117c4142-edd4-4c77-8696-dd18eebb770a"
+          ],
+          "mfgData": "0xd8,0x04",
+          "mfgDataMask": "0xff,0xff"
+        },
+        {
+          "serviceUuids": [
+            "a9d2b304-e8d6-4902-8336-352b772d7597"
+          ],
+          "mfgData": "0xd8,0x04",
+          "mfgDataMask": "0xff,0xff",
+          "requiresBond": true
+        },
+        {
+          "serviceUuids": [
+            "af854c2e-b214-458e-97e2-912c4ecf2cb8"
+          ],
+          "mfgData": "0xd8,0x04",
+          "mfgDataMask": "0xff,0xff"
+        }
+      ],
+      "usbFilters": [{
+        "vid": "0x04CB"
+      }],
+      "usedGattServiceUuids": [
+        "91f1de68-dff6-466e-8b65-ff13b0f16fb8",
+        "4c0020fe-f3b6-40de-acc9-77d129067b14",
+        "6514eb81-4e8f-458d-aa2a-e691336cdfac",
+        "123d8f06-62a1-4935-9322-833c531ee225",
+        "804daa8e-ffeb-4ab3-8e75-6edd7303208d",
+        "4e941240-d01d-46b9-a5ea-67636806830b",
+        "731893f9-744e-4899-b7e3-174106ff2b82",
+        "00001800-0000-1000-8000-00805f9b34fb",
+        "3b46ec2b-48ba-41fd-b1b8-ed860b60d22b"
+      ],
+      "setupOptions": [
+        {"name": "bluetooth", "title": "Bluetooth", "transport": 1},
+        {"name": "wifi", "title": "WiFi (Legacy)", "transport": 3},
+        {"name": "local-network", "title": "PC AutoSave & Wireless Tether Shoot", "transport": 6},
+        {"name": "usb", "title": "USB (WIP)", "transport": 2}
+      ],
+      "products": [
+        "X-E5",
+        "X-M5",
+        "X-T50",
+        "X100VI",
+        "X-S20",
+        "GFX 100 II",
+        "X-T5",
+        "X-H2",
+        "X-H2S",
+        "X-T30 II",
+        "GFX 50S II",
+        "GFX 100S",
+        "X-E4",
+        "X-S10",
+        "X-T4",
+        "X100V",
+        "X-Pro3",
+        "GFX 100",
+        "X-T30",
+        "GFX 50R",
+        "X-T3",
+        "X-H1",
+        "X-E3",
+        "X-T20",
+        "X100F",
+        "GFX 50S",
+        "X-T2",
+        "X-Pro2",
+        "X-E2S",
+        "X70",
+        "X-T1 IR",
+        "X-T10",
+        "X-A2",
+        "XQ2",
+        "X100T",
+        "X30",
+        "X-T1",
+        "XQ1",
+        "X-E2",
+        "X-A1",
+        "X-M1"
+      ]
+    }
+  ]
+}

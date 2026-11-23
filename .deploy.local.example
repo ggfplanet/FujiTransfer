@@ -1,0 +1,12 @@
+# Lokale Deployment-Konfiguration fuer refresh-iphone.command
+# Kopiere diese Datei nach `.deploy.local` und trage deine eigenen Werte ein.
+# `.deploy.local` steht in `.gitignore` und landet niemals auf GitHub.
+
+# Deine Apple Development Team ID (aus Xcode -> Signing & Capabilities)
+DEVELOPMENT_TEAM="YOUR_TEAM_ID"
+
+# Deine eindeutige iOS Bundle ID
+BUNDLE_ID="com.example.fujitransfer.app"
+
+# UDID deines iPhones (ermitteln per: xcrun devicectl list devices)
+DEVICE_ID="YOUR_IPHONE_UDID"

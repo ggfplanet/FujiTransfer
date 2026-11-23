@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		018A0F4425AE6609BCB4CEF2 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F99F6F91EECE4A4988E44 /* GalleryView.swift */; };
+		30E94B193EDE23B3DC95B335 /* PhotoLibrarySaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CEF4449A3DD3149073A895 /* PhotoLibrarySaver.swift */; };
+		35C3ABB54EDF23226B85B9D8 /* FujiTransferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92328C625B336DA3BE8A33A /* FujiTransferApp.swift */; };
+		377663552BCCE2AC1B68060B /* ConnectionModeBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239B4AF96ABB08F9E3E404CF /* ConnectionModeBadge.swift */; };
+		399362A5995C13F3736D087A /* FujiCore in Frameworks */ = {isa = PBXBuildFile; productRef = 603870E4A53BFA72D92CD933 /* FujiCore */; };
+		452D81E82F6DFC811FFBBFCC /* PhotoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE748112EBE9C61DA079D29B /* PhotoGridCell.swift */; };
+		4D7CFD2FFF8D2F9BA92BF7A1 /* CameraSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1323957F17804644AFACD5 /* CameraSessionStore.swift */; };
+		4E1FD573CAD9600C0AB21E2E /* BLERemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F420AB49AB1E2A3BA1287 /* BLERemoteStore.swift */; };
+		575CBEA784BCFC5B937CD42C /* GalleryFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6AE52DB4B1548C125A0C03 /* GalleryFilterBar.swift */; };
+		700BC3F69FFB1A48C30D583D /* CameraSessionStore+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CCBD52AFB6C917817BBEA /* CameraSessionStore+Filters.swift */; };
+		9B36A2D3AF1AE0C494558AF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90259DBCFBEE4B96892127B /* ContentView.swift */; };
+		BED1ECC052B602450B122E1B /* TransferOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2C1DF3C57EFB77AEEDB06 /* TransferOverlayView.swift */; };
+		D32289571DF39D9473DEBF63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E97B42458E81EE61CC5CC7 /* Assets.xcassets */; };
+		D5CF3A370BEED6AF6CF17C99 /* WiFiLiveViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34DF2A9413DED3B4ABD7CCA /* WiFiLiveViewStore.swift */; };
+		D7F28E0636F9CEC2A9F7DC33 /* WiFiLiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB1877CF2A1BD5684FDD58C /* WiFiLiveView.swift */; };
+		D8EDEC33FD7401D1A9CBF8F3 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFCAE5E14832FA53E054E61 /* ConnectView.swift */; };
+		EE739816F40170CB7DA4FD51 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04956F5EC7F9E1EDEEA6BE /* PhotoPreviewView.swift */; };
+		F11127A17F3F6C1C9C72D06A /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70003BDB0ECFBFB08B6C74CC /* LocationService.swift */; };
+		F15B22CD158F426550BFDEB5 /* BLERemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58E87C35A2E4000B685EE49 /* BLERemoteView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		239B4AF96ABB08F9E3E404CF /* ConnectionModeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModeBadge.swift; sourceTree = "<group>"; };
+		25D44E00DBFE5538631E8550 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		65318030EBA363663B4658E4 /* FujiTransfer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FujiTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1323957F17804644AFACD5 /* CameraSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionStore.swift; sourceTree = "<group>"; };
+		70003BDB0ECFBFB08B6C74CC /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		79A75B4C52BC384692DDA6D3 /* fujifilm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fujifilm; path = ..; sourceTree = SOURCE_ROOT; };
+		A8B2C1DF3C57EFB77AEEDB06 /* TransferOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferOverlayView.swift; sourceTree = "<group>"; };
+		AA6AE52DB4B1548C125A0C03 /* GalleryFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFilterBar.swift; sourceTree = "<group>"; };
+		AE748112EBE9C61DA079D29B /* PhotoGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridCell.swift; sourceTree = "<group>"; };
+		B49F420AB49AB1E2A3BA1287 /* BLERemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLERemoteStore.swift; sourceTree = "<group>"; };
+		B95F99F6F91EECE4A4988E44 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		D34DF2A9413DED3B4ABD7CCA /* WiFiLiveViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLiveViewStore.swift; sourceTree = "<group>"; };
+		D92328C625B336DA3BE8A33A /* FujiTransferApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FujiTransferApp.swift; sourceTree = "<group>"; };
+		E3E97B42458E81EE61CC5CC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E90259DBCFBEE4B96892127B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ECB1877CF2A1BD5684FDD58C /* WiFiLiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLiveView.swift; sourceTree = "<group>"; };
+		F1CEF4449A3DD3149073A895 /* PhotoLibrarySaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibrarySaver.swift; sourceTree = "<group>"; };
+		F58E87C35A2E4000B685EE49 /* BLERemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLERemoteView.swift; sourceTree = "<group>"; };
+		F90CCBD52AFB6C917817BBEA /* CameraSessionStore+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraSessionStore+Filters.swift"; sourceTree = "<group>"; };
+		FB04956F5EC7F9E1EDEEA6BE /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		FEFCAE5E14832FA53E054E61 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50336EC69E5580C23E1B0F8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				399362A5995C13F3736D087A /* FujiCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		162BCFC66D7AFF32B172130C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				70003BDB0ECFBFB08B6C74CC /* LocationService.swift */,
+				F1CEF4449A3DD3149073A895 /* PhotoLibrarySaver.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		346AE25728A31DB7F53A4D15 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F58E87C35A2E4000B685EE49 /* BLERemoteView.swift */,
+				239B4AF96ABB08F9E3E404CF /* ConnectionModeBadge.swift */,
+				FEFCAE5E14832FA53E054E61 /* ConnectView.swift */,
+				E90259DBCFBEE4B96892127B /* ContentView.swift */,
+				AA6AE52DB4B1548C125A0C03 /* GalleryFilterBar.swift */,
+				B95F99F6F91EECE4A4988E44 /* GalleryView.swift */,
+				AE748112EBE9C61DA079D29B /* PhotoGridCell.swift */,
+				FB04956F5EC7F9E1EDEEA6BE /* PhotoPreviewView.swift */,
+				A8B2C1DF3C57EFB77AEEDB06 /* TransferOverlayView.swift */,
+				ECB1877CF2A1BD5684FDD58C /* WiFiLiveView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3BC6F288E2CC2C75DD19A4B2 /* FujiTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				E3E97B42458E81EE61CC5CC7 /* Assets.xcassets */,
+				D92328C625B336DA3BE8A33A /* FujiTransferApp.swift */,
+				25D44E00DBFE5538631E8550 /* Info.plist */,
+				CD694D1CF260C9AB8487B52C /* Models */,
+				162BCFC66D7AFF32B172130C /* Services */,
+				346AE25728A31DB7F53A4D15 /* Views */,
+			);
+			path = FujiTransfer;
+			sourceTree = "<group>";
+		};
+		3C9BA4CB8BA49D5B4E81D01B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				79A75B4C52BC384692DDA6D3 /* fujifilm */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		7685787B271222F33EECB299 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65318030EBA363663B4658E4 /* FujiTransfer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		919A7CD120600C1DDE38575D = {
+			isa = PBXGroup;
+			children = (
+				3BC6F288E2CC2C75DD19A4B2 /* FujiTransfer */,
+				3C9BA4CB8BA49D5B4E81D01B /* Packages */,
+				7685787B271222F33EECB299 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD694D1CF260C9AB8487B52C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B49F420AB49AB1E2A3BA1287 /* BLERemoteStore.swift */,
+				6F1323957F17804644AFACD5 /* CameraSessionStore.swift */,
+				F90CCBD52AFB6C917817BBEA /* CameraSessionStore+Filters.swift */,
+				D34DF2A9413DED3B4ABD7CCA /* WiFiLiveViewStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10E98A685F7245E914DB388A /* FujiTransfer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63C853F1A3B6ED93E9B5CF86 /* Build configuration list for PBXNativeTarget "FujiTransfer" */;
+			buildPhases = (
+				AC1DE6D6625EAFA277CD4FB4 /* Sources */,
+				1B339E69E95E198DDBDE04E4 /* Resources */,
+				50336EC69E5580C23E1B0F8B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FujiTransfer;
+			packageProductDependencies = (
+				603870E4A53BFA72D92CD933 /* FujiCore */,
+			);
+			productName = FujiTransfer;
+			productReference = 65318030EBA363663B4658E4 /* FujiTransfer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		549F066716B220891E0B755B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					10E98A685F7245E914DB388A = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 75C013E9841B381055892169 /* Build configuration list for PBXProject "FujiTransfer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 919A7CD120600C1DDE38575D;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				878BE6704615056F9DE8B44C /* XCLocalSwiftPackageReference ".." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7685787B271222F33EECB299 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10E98A685F7245E914DB388A /* FujiTransfer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B339E69E95E198DDBDE04E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32289571DF39D9473DEBF63 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC1DE6D6625EAFA277CD4FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E1FD573CAD9600C0AB21E2E /* BLERemoteStore.swift in Sources */,
+				F15B22CD158F426550BFDEB5 /* BLERemoteView.swift in Sources */,
+				700BC3F69FFB1A48C30D583D /* CameraSessionStore+Filters.swift in Sources */,
+				4D7CFD2FFF8D2F9BA92BF7A1 /* CameraSessionStore.swift in Sources */,
+				D8EDEC33FD7401D1A9CBF8F3 /* ConnectView.swift in Sources */,
+				377663552BCCE2AC1B68060B /* ConnectionModeBadge.swift in Sources */,
+				9B36A2D3AF1AE0C494558AF5 /* ContentView.swift in Sources */,
+				35C3ABB54EDF23226B85B9D8 /* FujiTransferApp.swift in Sources */,
+				575CBEA784BCFC5B937CD42C /* GalleryFilterBar.swift in Sources */,
+				018A0F4425AE6609BCB4CEF2 /* GalleryView.swift in Sources */,
+				F11127A17F3F6C1C9C72D06A /* LocationService.swift in Sources */,
+				452D81E82F6DFC811FFBBFCC /* PhotoGridCell.swift in Sources */,
+				30E94B193EDE23B3DC95B335 /* PhotoLibrarySaver.swift in Sources */,
+				EE739816F40170CB7DA4FD51 /* PhotoPreviewView.swift in Sources */,
+				BED1ECC052B602450B122E1B /* TransferOverlayView.swift in Sources */,
+				D7F28E0636F9CEC2A9F7DC33 /* WiFiLiveView.swift in Sources */,
+				D5CF3A370BEED6AF6CF17C99 /* WiFiLiveViewStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2A95BD04F9FC6EF50D188357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2F36266F2D4C8EF50C3DB58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FujiTransfer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.fujitransfer.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5C1C7F73830AB302AD5D8177 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6EE5FD449FE55B8159059454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FujiTransfer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.fujitransfer.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63C853F1A3B6ED93E9B5CF86 /* Build configuration list for PBXNativeTarget "FujiTransfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE5FD449FE55B8159059454 /* Debug */,
+				2F36266F2D4C8EF50C3DB58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		75C013E9841B381055892169 /* Build configuration list for PBXProject "FujiTransfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1C7F73830AB302AD5D8177 /* Debug */,
+				2A95BD04F9FC6EF50D188357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		878BE6704615056F9DE8B44C /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		603870E4A53BFA72D92CD933 /* FujiCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FujiCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 549F066716B220891E0B755B /* Project object */;
+}

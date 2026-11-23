@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>de</string>
+    <key>CFBundleDisplayName</key>
+    <string>FujiTransfer</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+    </dict>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>FujiTransfer nutzt Bluetooth LE, um deine Fujifilm X-T4 zu koppeln, fernzusteuern und das Kamera-WLAN zu starten.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>FujiTransfer nutzt deinen aktuellen Standort, um GPS-Koordinaten per Bluetooth direkt in die Fotos deiner Fujifilm X-T4 zu schreiben.</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>FujiTransfer verbindet sich ueber das lokale Kamera-WLAN (192.168.0.1) mit deiner Fujifilm X-T4, um Fotos in Originalqualitaet zu uebertragen.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>FujiTransfer speichert ausgewaehlte Fotos deiner Fujifilm X-T4 in Originalaufloesung direkt in deiner Fotos-Mediathek.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>FujiTransfer benoetigt Zugriff, um uebertragene Fotos deiner Fujifilm X-T4 in deiner Fotos-Mediathek abzulegen.</string>
+</dict>
+</plist>

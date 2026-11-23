@@ -1,0 +1,32 @@
+name: FujiTransfer
+options:
+  bundleIdPrefix: com.example.fujitransfer
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+
+packages:
+  FujiTransfer:
+    path: ..
+
+targets:
+  FujiTransfer:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: FujiTransfer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.fujitransfer.app
+        INFOPLIST_FILE: FujiTransfer/Info.plist
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    dependencies:
+      - package: FujiTransfer
+        product: FujiCore

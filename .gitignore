@@ -1,0 +1,27 @@
+# Build & Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode & Apple User State
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserstate
+*.moved-aside
+
+# Local Signing, Builds & Test Downloads
+.deploy.local
+dist/
+downloads/
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.mobileprovision
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
