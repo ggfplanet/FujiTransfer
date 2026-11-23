@@ -1,0 +1,52 @@
+name: "🐛 Fehler melden (Bug Report)"
+description: "Melde einen Fehler oder ein Verbindungsproblem mit FujiTransfer."
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: input
+    id: camera_model
+    attributes:
+      label: "Kameramodell & Firmware"
+      placeholder: "z. B. Fujifilm X-T4 (FW 02.12)"
+    validations:
+      required: true
+
+  - type: input
+    id: ios_device
+    attributes:
+      label: "iPhone / Mac & OS-Version"
+      placeholder: "z. B. iPhone 15 Pro (iOS 17.6) / macOS 14.6"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "Betroffener Bereich"
+      options:
+        - "Tab: Fotos (WLAN PTP/IP)"
+        - "Tab: Live-View (WLAN)"
+        - "Tab: BLE-Steuerung (Bluetooth LE)"
+        - "Verbindungsübergabe (BLE ↔ WLAN)"
+        - "Firmware-Prüfung"
+        - "macOS CLI (fuji-probe) / FujiCore"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Schritte zur Reproduktion"
+      description: "Wie lässt sich das Problem nachstellen?"
+      placeholder: |
+        1. Kamera einschalten...
+        2. In der App auf '...' tippen...
+        3. Fehler tritt auf...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Fehlermeldung oder Protokoll-Log"
+      description: "Falls vorhanden, kopiere das Verbindungsprotokoll aus der App oder die Xcode-/CLI-Ausgabe hier hinein."

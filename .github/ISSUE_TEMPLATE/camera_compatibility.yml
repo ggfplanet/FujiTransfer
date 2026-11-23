@@ -1,0 +1,57 @@
+name: "📷 Kamera-Kompatibilität melden (Camera Compatibility)"
+description: "Teile mit, wie FujiTransfer mit deinem Fujifilm-Kameramodell funktioniert."
+title: "[Kamera-Test]: FUJIFILM "
+labels: ["camera-compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vielen Dank, dass du FujiTransfer mit deiner Kamera getestet hast! Dein Bericht hilft anderen Fotografen zu sehen, welche Modelle unterstützt werden.
+
+  - type: input
+    id: camera_model
+    attributes:
+      label: "Kameramodell"
+      description: "Welches Fujifilm-Modell hast du getestet?"
+      placeholder: "z. B. Fujifilm X-T5, X-H2, X100VI, X-S20, X-T3"
+    validations:
+      required: true
+
+  - type: input
+    id: camera_firmware
+    attributes:
+      label: "Kamera-Firmware & Objektiv"
+      description: "Welche Firmware-Version läuft auf der Kamera (und ggf. welches Objektiv war montiert)?"
+      placeholder: "z. B. FW 02.12 · XF 23mm F1.4 R LM WR"
+    validations:
+      required: true
+
+  - type: input
+    id: ios_device
+    attributes:
+      label: "iPhone & iOS-Version"
+      placeholder: "z. B. iPhone 16 Pro · iOS 18.1"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: working_features
+    attributes:
+      label: "Getestete & funktionierende Funktionen"
+      description: "Bitte hake alles an, was erfolgreich funktioniert hat:"
+      options:
+        - label: "BLE-Kopplung (Pairing-Token speichern)"
+        - label: "BLE-Steuerung: Kamera- & Objektiv-Info + Firmware-Check"
+        - label: "BLE-Steuerung: Fernauslöser (Einzelbild / AF / Bulb / Intervall)"
+        - label: "BLE-Steuerung: GPS-Geotagging & Uhrzeit-Sync"
+        - label: "BLE → WLAN: Kamera-WLAN per Bluetooth wecken"
+        - label: "Fotos (WLAN): Galerie laden, SD-Slot-Wechsel & Filter"
+        - label: "Fotos (WLAN): Original-JPEG-Download in Apple Fotos"
+        - label: "Live-View (WLAN): Sucher-Stream, Auslöser & Belichtungssteuerung"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Anmerkungen / Besonderheiten / Fehler"
+      description: "Gab es Einschränkungen, Fehlermeldungen oder Besonderheiten bei deinem Modell?"
+      placeholder: "Optional: Details oder Konsolen-Logs..."

@@ -33,6 +33,30 @@ public struct FujiSessionInfo: Sendable, Equatable {
     public let hasExplicitHandleList: Bool
     public let effectiveMode: FujiTransportMode
     public let cards: [FujiCardInfo]
+
+    public init(
+        cameraName: String,
+        cameraState: Int,
+        remoteVersion: Int,
+        remoteImageViewVersion: Int,
+        remoteImageViewExVersion: Int,
+        activeCardID: Int,
+        totalObjectCount: Int,
+        hasExplicitHandleList: Bool,
+        effectiveMode: FujiTransportMode,
+        cards: [FujiCardInfo]
+    ) {
+        self.cameraName = cameraName
+        self.cameraState = cameraState
+        self.remoteVersion = remoteVersion
+        self.remoteImageViewVersion = remoteImageViewVersion
+        self.remoteImageViewExVersion = remoteImageViewExVersion
+        self.activeCardID = activeCardID
+        self.totalObjectCount = totalObjectCount
+        self.hasExplicitHandleList = hasExplicitHandleList
+        self.effectiveMode = effectiveMode
+        self.cards = cards
+    }
 }
 
 /// Metadaten zu einem Foto oder Video auf der SD-Karte.
@@ -113,6 +137,26 @@ public struct FujiBLECameraStatus: Sendable, Equatable {
     public let supportsShutter: Bool
     public let supportsGeotag: Bool
     public let supportsFiles: Bool
+
+    public init(
+        cameraName: String,
+        firmwareVersion: String?,
+        lensName: String?,
+        lensFirmwareVersion: String?,
+        wifiSSID: String?,
+        supportsShutter: Bool,
+        supportsGeotag: Bool,
+        supportsFiles: Bool
+    ) {
+        self.cameraName = cameraName
+        self.firmwareVersion = firmwareVersion
+        self.lensName = lensName
+        self.lensFirmwareVersion = lensFirmwareVersion
+        self.wifiSSID = wifiSSID
+        self.supportsShutter = supportsShutter
+        self.supportsGeotag = supportsGeotag
+        self.supportsFiles = supportsFiles
+    }
 }
 
 /// Dateityp fuer kleine BLE-Dateitransfers (Kamera-Backup oder Status).

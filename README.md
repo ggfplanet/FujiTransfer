@@ -4,6 +4,14 @@ Eine schnelle, native iOS-App (SwiftUI, iOS 17+) und wiederverwendbare Swift-Bib
 
 ## Funktionen auf einen Blick
 
+<p align="center">
+  <img src="docs/screenshots/tab-photos.png" width="31%" alt="Tab Fotos – WLAN-Kopplung & Transfer" />
+  &nbsp;
+  <img src="docs/screenshots/tab-liveview.png" width="31%" alt="Tab Live-View – Sucher & Belichtungssteuerung" />
+  &nbsp;
+  <img src="docs/screenshots/tab-bluetooth.png" width="31%" alt="Tab Bluetooth – Fernauslöser, Firmware-Check & Geotagging" />
+</p>
+
 Die App trennt bewusst zwischen **schnellen, stromsparenden Bluetooth-Funktionen** und **bandbreitenintensiven WLAN-Funktionen** in drei klaren Tabs:
 
 | Tab | Verbindung | Funktionen |

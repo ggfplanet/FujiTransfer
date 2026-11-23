@@ -54,6 +54,30 @@ public struct FujiLiveViewStatus: Equatable, Sendable {
     public let movieRemainingSeconds: UInt32
     public let isLiveViewActive: Bool
 
+    public init(
+        isoRaw: UInt32,
+        fNumberRaw: UInt32,
+        shutterSpeedRaw: UInt32,
+        filmSimulationRaw: UInt32,
+        exposureBiasMillistops: Int32?,
+        whiteBalanceRaw: UInt32,
+        batteryLevel: UInt32,
+        shotsRemaining: UInt32,
+        movieRemainingSeconds: UInt32,
+        isLiveViewActive: Bool
+    ) {
+        self.isoRaw = isoRaw
+        self.fNumberRaw = fNumberRaw
+        self.shutterSpeedRaw = shutterSpeedRaw
+        self.filmSimulationRaw = filmSimulationRaw
+        self.exposureBiasMillistops = exposureBiasMillistops
+        self.whiteBalanceRaw = whiteBalanceRaw
+        self.batteryLevel = batteryLevel
+        self.shotsRemaining = shotsRemaining
+        self.movieRemainingSeconds = movieRemainingSeconds
+        self.isLiveViewActive = isLiveViewActive
+    }
+
     public var formattedFNumber: String {
         guard fNumberRaw > 0 else { return "–" }
         let f = Double(fNumberRaw) / 100.0
