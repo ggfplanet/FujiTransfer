@@ -40,20 +40,20 @@ struct GalleryFilterBar: View {
                                 Task { await store.loadAllRemainingMetadata() }
                             } label: {
                                 Label(
-                                    store.isLoadingMorePhotos ? "Laedt..." : "Alle Tage laden",
+                                    store.isLoadingMorePhotos ? "Lädt…" : "Alle Tage laden",
                                     systemImage: "arrow.down.circle"
                                 )
                                 .font(.caption.weight(.medium))
                                 .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(.secondary.opacity(0.14), in: Capsule())
+                                .padding(.vertical, 7)
+                                .background(Color(uiColor: .tertiarySystemFill), in: Capsule())
                             }
                             .disabled(store.isLoadingMorePhotos)
                         }
                     }
 
                     if store.galleryFilter.hasActiveFilter {
-                        Button("Zuruecksetzen") {
+                        Button("Zurücksetzen") {
                             Task { await store.resetGalleryFilters() }
                         }
                         .font(.caption.weight(.semibold))
@@ -99,10 +99,10 @@ struct GalleryFilterBar: View {
                     .font(.caption.weight(.semibold))
             }
             .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .foregroundStyle(store.galleryFilter.starFilter == .all ? Color.primary : Color.yellow)
+            .padding(.vertical, 7)
+            .foregroundStyle(store.galleryFilter.starFilter == .all ? Color.primary : Color.orange)
             .background(
-                (store.galleryFilter.starFilter == .all ? Color.secondary.opacity(0.14) : Color.yellow.opacity(0.18)),
+                (store.galleryFilter.starFilter == .all ? Color(uiColor: .tertiarySystemFill) : Color.orange.opacity(0.16)),
                 in: Capsule()
             )
         }
@@ -130,10 +130,10 @@ struct GalleryFilterBar: View {
                     .font(.caption.weight(.semibold))
             }
             .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+            .padding(.vertical, 7)
             .foregroundStyle(store.galleryFilter.importFilter == .all ? Color.primary : Color.accentColor)
             .background(
-                (store.galleryFilter.importFilter == .all ? Color.secondary.opacity(0.14) : Color.accentColor.opacity(0.16)),
+                (store.galleryFilter.importFilter == .all ? Color(uiColor: .tertiarySystemFill) : Color.accentColor.opacity(0.16)),
                 in: Capsule()
             )
         }
@@ -144,10 +144,10 @@ struct GalleryFilterBar: View {
             Text(title)
                 .font(.caption.weight(isSelected ? .semibold : .regular))
                 .padding(.horizontal, 10)
-                .padding(.vertical, 6)
+                .padding(.vertical, 7)
                 .foregroundStyle(isSelected ? Color.white : Color.primary)
                 .background(
-                    isSelected ? Color.accentColor : Color.secondary.opacity(0.14),
+                    isSelected ? Color.accentColor : Color(uiColor: .tertiarySystemFill),
                     in: Capsule()
                 )
         }

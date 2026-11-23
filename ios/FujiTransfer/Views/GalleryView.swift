@@ -41,24 +41,28 @@ struct GalleryView: View {
 
             ScrollView {
                 if store.filteredPhotos.isEmpty && !store.isLoadingMorePhotos && !store.isApplyingFilter {
-                    VStack(spacing: 10) {
-                        Image(systemName: "photo.on.rectangle.angled")
-                            .font(.largeTitle)
-                            .foregroundStyle(.secondary)
-                        Text(store.galleryFilter.hasActiveFilter
-                             ? "Keine Fotos fuer diesen Filter gefunden."
-                             : "Keine Fotos auf dieser Speicherkarte.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                    ContentUnavailableView {
+                        Label(
+                            store.galleryFilter.hasActiveFilter
+                                ? "Keine passenden Fotos"
+                                : "Keine Fotos gefunden",
+                            systemImage: "photo.on.rectangle.angled"
+                        )
+                    } description: {
+                        Text(
+                            store.galleryFilter.hasActiveFilter
+                                ? "Für die aktiven Filter wurden keine Fotos gefunden."
+                                : "Auf dieser Speicherkarte sind keine Fotos vorhanden."
+                        )
+                    } actions: {
                         if store.galleryFilter.hasActiveFilter {
-                            Button("Filter zuruecksetzen") {
+                            Button("Filter zurücksetzen") {
                                 Task { await store.resetGalleryFilters() }
                             }
                             .buttonStyle(.bordered)
                         }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 48)
+                    .padding(.vertical, 32)
                 } else {
                     LazyVGrid(columns: columns, spacing: 6) {
                         ForEach(store.filteredPhotos) { photo in
@@ -76,6 +80,7 @@ struct GalleryView: View {
                     }
                     .padding(.horizontal, 8)
                     .padding(.top, 4)
+                    .padding(.bottom, 12)
                 }
 
                 if store.hasMorePhotos {
@@ -87,18 +92,19 @@ struct GalleryView: View {
                                 ProgressView()
                             }
                             Text(store.isLoadingMorePhotos
-                                 ? "Lade weitere Fotos..."
+                                 ? "Lade weitere Fotos…"
                                  : "Weitere Fotos laden (\(store.photos.count) / \(store.sessionInfo?.totalObjectCount ?? 0))")
                         }
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
                     }
                     .buttonStyle(.bordered)
+                    .controlSize(.large)
                     .padding()
                     .disabled(store.isLoadingMorePhotos)
                 }
             }
-
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
         }
         .navigationTitle("Fotos")
@@ -114,14 +120,15 @@ struct GalleryView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
-                    Button("Neueste 5 auswaehlen") { store.selectLatest(5) }
-                    Button("Neueste 10 auswaehlen") { store.selectLatest(10) }
-                    Button("Neueste 20 auswaehlen") { store.selectLatest(20) }
+                    Button("Neueste 5 auswählen") { store.selectLatest(5) }
+                    Button("Neueste 10 auswählen") { store.selectLatest(10) }
+                    Button("Neueste 20 auswählen") { store.selectLatest(20) }
                     Divider()
                     Button("Auswahl aufheben") { store.clearSelection() }
                 } label: {
                     Image(systemName: "checklist")
                 }
+                .accessibilityLabel("Auswahloptionen")
             }
         }
     }
@@ -145,7 +152,7 @@ struct GalleryView: View {
             Divider()
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(store.selectedHandles.count) ausgewaehlt")
+                    Text("\(store.selectedHandles.count) ausgewählt")
                         .font(.subheadline.weight(.semibold))
                     Text("Original-JPEG (6240 × 4160)")
                         .font(.caption)
@@ -161,9 +168,11 @@ struct GalleryView: View {
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(.borderedProminent)
+                .controlSize(.regular)
                 .disabled(store.selectedHandles.isEmpty)
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 12)
             .background(.bar)
         }
     }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Hauptnavigation mit klarer 3-Tab-Trennung zwischen WLAN-Funktionen und schneller Bluetooth-Steuerung:
-/// 1) Fotos (WLAN)   2) Live-View (WLAN)   3) BLE-Steuerung (nur Bluetooth, ohne WLAN)
+/// 1) Fotos (WLAN)   2) Live-View (WLAN)   3) Bluetooth (nur Bluetooth, ohne WLAN)
 enum AppTab: Hashable {
     case photos
     case liveView
@@ -47,13 +47,13 @@ struct ContentView: View {
                 store: store,
                 liveView: liveView
             )
-                .tabItem {
-                    Label("BLE-Steuerung", systemImage: "dot.radiowaves.left.and.right")
-                }
-                .tag(AppTab.bleRemote)
+            .tabItem {
+                Label("Bluetooth", systemImage: "dot.radiowaves.left.and.right")
+            }
+            .tag(AppTab.bleRemote)
         }
         .onChange(of: selectedTab) { oldTab, newTab in
-            // Beim Verlassen des Live-View-Tabs sauber in den Galerie-Modus zurueckschalten
+            // Beim Verlassen des Live-View-Tabs sauber in den Galerie-Modus zurückschalten
             if oldTab == .liveView && newTab != .liveView {
                 Task { await liveView.stopLiveView(using: store) }
             }

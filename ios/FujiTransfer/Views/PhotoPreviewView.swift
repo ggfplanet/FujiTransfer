@@ -58,10 +58,10 @@ struct PhotoPreviewView: View {
                 Image(systemName: "xmark")
                     .font(.headline)
                     .foregroundStyle(.white)
-                    .padding(10)
+                    .frame(width: 44, height: 44)
                     .background(.ultraThinMaterial, in: Circle())
             }
-            .accessibilityLabel("Vorschau schliessen")
+            .accessibilityLabel("Vorschau schließen")
 
             Spacer()
 
@@ -88,11 +88,12 @@ struct PhotoPreviewView: View {
                 } label: {
                     Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                         .font(.title2)
-                        .foregroundStyle(isSelected ? .blue : .white)
-                        .padding(6)
+                        .foregroundStyle(isSelected ? Color.accentColor : .white)
+                        .frame(width: 44, height: 44)
                         .background(.ultraThinMaterial, in: Circle())
                 }
-                .accessibilityLabel(isSelected ? "Auswahl entfernen" : "Foto auswaehlen")
+                .accessibilityLabel(isSelected ? "Auswahl entfernen" : "Foto auswählen")
+                .sensoryFeedback(.selection, trigger: isSelected)
             }
         }
         .padding(.horizontal)
@@ -188,7 +189,7 @@ private struct ZoomablePhotoPage: View {
                     Spacer()
                     HStack(spacing: 8) {
                         ProgressView().tint(.white).scaleEffect(0.8)
-                        Text("Lade scharfe Vorschau...")
+                        Text("Lade scharfe Vorschau…")
                             .font(.caption)
                             .foregroundStyle(.white)
                     }

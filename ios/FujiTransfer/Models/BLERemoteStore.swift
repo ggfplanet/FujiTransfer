@@ -39,12 +39,18 @@ final class BLERemoteStore {
     var lastSentTimeText: String?
     var geotagSendCount: Int = 0
 
+    // Firmware-Status (nur gesetzt, wenn gegen fujifilm-x.com verifiziert)
+    var cameraFirmwareStatus: FujiFirmwareStatus?
+    var lensFirmwareStatus: FujiFirmwareStatus?
+
     var isConnected: Bool { cameraStatus != nil }
 
     private var session: FujiBLESession?
     private let locationService = LocationService()
+    private let firmwareChecker = FujiFirmwareChecker()
     private var bulbTimerTask: Task<Void, Never>?
     private var intervalTask: Task<Void, Never>?
+    private var firmwareCheckTask: Task<Void, Never>?
 
     init() {
         locationService.onLocationUpdated = { [weak self] _ in
@@ -99,6 +105,7 @@ final class BLERemoteStore {
             if isAutoGeotagEnabled {
                 locationService.startUpdating()
             }
+            startFirmwareCheck(for: status)
         } catch {
             ble.disconnect()
             errorMessage = error.localizedDescription
@@ -119,8 +126,12 @@ final class BLERemoteStore {
         stopIntervalometer()
         bulbTimerTask?.cancel()
         bulbTimerTask = nil
+        firmwareCheckTask?.cancel()
+        firmwareCheckTask = nil
         isBulbActive = false
         bulbElapsedSeconds = 0
+        cameraFirmwareStatus = nil
+        lensFirmwareStatus = nil
         locationService.stopUpdating()
 
         let activeSession = session
@@ -150,11 +161,59 @@ final class BLERemoteStore {
     private func handleUnexpectedDisconnect(reason: String?) {
         stopIntervalometer()
         bulbTimerTask?.cancel()
+        firmwareCheckTask?.cancel()
+        firmwareCheckTask = nil
         isBulbActive = false
+        cameraFirmwareStatus = nil
+        lensFirmwareStatus = nil
         cameraStatus = nil
         session = nil
         errorMessage = reason ?? "Bluetooth-Verbindung zur X-T4 wurde getrennt."
         appendLog("[BLE] Getrennt: \(reason ?? "Kamera hat Verbindung beendet")")
+    }
+
+    // MARK: - Firmware-Pruefung (fujifilm-x.com)
+
+    private func startFirmwareCheck(for status: FujiBLECameraStatus) {
+        firmwareCheckTask?.cancel()
+        cameraFirmwareStatus = nil
+        lensFirmwareStatus = nil
+
+        firmwareCheckTask = Task { [weak self] in
+            guard let self else { return }
+            async let camResult = self.firmwareChecker.checkCameraFirmware(
+                modelName: status.cameraName,
+                installedVersion: status.firmwareVersion
+            )
+            async let lensResult = self.firmwareChecker.checkLensFirmware(
+                lensName: status.lensName,
+                installedVersion: status.lensFirmwareVersion
+            )
+
+            let (camFW, lensFW) = await (camResult, lensResult)
+            guard !Task.isCancelled, self.cameraStatus == status else { return }
+
+            self.cameraFirmwareStatus = camFW
+            self.lensFirmwareStatus = lensFW
+
+            switch camFW {
+            case .upToDate(let latest, _):
+                self.appendLog("Firmware-Check Kamera: aktuell (Ver. \(latest)).")
+            case .updateAvailable(let installed, let latest, _):
+                self.appendLog("Firmware-Check Kamera: Update verfügbar (\(installed) → \(latest)).")
+            case nil:
+                break
+            }
+
+            switch lensFW {
+            case .upToDate(let latest, _):
+                self.appendLog("Firmware-Check Objektiv: aktuell (Ver. \(latest)).")
+            case .updateAvailable(let installed, let latest, _):
+                self.appendLog("Firmware-Check Objektiv: Update verfügbar (\(installed) → \(latest)).")
+            case nil:
+                break
+            }
+        }
     }
 
     // MARK: - Fernausloeser & Bulb

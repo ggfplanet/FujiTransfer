@@ -10,7 +10,7 @@ Die App trennt bewusst zwischen **schnellen, stromsparenden Bluetooth-Funktionen
 | --- | --- | --- |
 | **Fotos** | **WLAN** | Galerie mit SD-Slot-Umschaltung (Slot 1 / 2), Vollbild-Zoom-Vorschau, Filter nach **Aufnahmedatum**, **Import-Status** (*Alle / Neu / Importiert*) und **Kamera-Sternen** (XApp), verlustfreier Original-JPEG-Import (z. B. 6240 × 4160 inkl. EXIF) direkt in Apple Fotos |
 | **Live-View** | **WLAN** | Live-Sucherbild (MJPEG-Stream), Foto-Auslöser, Video-Aufnahme (Start/Stopp), Live-Telemetrie (Blende, Verschlusszeit, ISO, EV, Restfotos), schrittweise Belichtungssteuerung sowie ISO- & Filmsimulations-Auswahl |
-| **BLE-Steuerung** | **nur Bluetooth (ohne WLAN)** | Sofort startklarer Fernauslöser (Einzelbild, Autofokus, Bulb mit Timer), Intervallometer / Zeitraffer, automatisches & manuelles GPS-Geotagging (Koordinaten & Höhe in EXIF), automatische Uhrzeit-Synchronisation, Kamera- & Objektiv-Info |
+| **BLE-Steuerung** | **nur Bluetooth (ohne WLAN)** | Sofort startklarer Fernauslöser (Einzelbild, Autofokus, Bulb mit Timer), Intervallometer / Zeitraffer, automatisches & manuelles GPS-Geotagging (Koordinaten & Höhe in EXIF), automatische Uhrzeit-Synchronisation, Kamera- & Objektiv-Info inkl. Live-Firmware-Prüfung gegen offizielle Fujifilm-Updates |
 
 ### Automatische Verbindungsübergabe zwischen den Tabs
 Da Fujifilm-Kameras jeweils nur eine aktive Funk-Session (Bluetooth **oder** Kamera-WLAN) zulassen, übernimmt die App den Wechsel automatisch:

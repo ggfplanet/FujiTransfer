@@ -15,8 +15,9 @@ struct TransferOverlayView: View {
                     Image(systemName: state.failedFilenames.isEmpty ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
                         .font(.system(size: 44))
                         .foregroundStyle(state.failedFilenames.isEmpty ? .green : .orange)
+                        .accessibilityHidden(true)
 
-                    Text(state.wasCancelled ? "Uebertragung abgebrochen" : "Uebertragung abgeschlossen")
+                    Text(state.wasCancelled ? "Übertragung abgebrochen" : "Übertragung abgeschlossen")
                         .font(.headline)
 
                     Text("\(state.completedCount) von \(state.totalCount) Fotos in deiner Mediathek gespeichert.")
@@ -33,9 +34,10 @@ struct TransferOverlayView: View {
 
                     Button("Fertig", action: onDismiss)
                         .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
                         .frame(maxWidth: .infinity)
                 } else {
-                    Text("Uebertrage Foto \(state.currentIndex) von \(state.totalCount)")
+                    Text("Übertrage Foto \(state.currentIndex) von \(state.totalCount)")
                         .font(.headline)
 
                     Text(state.currentFilename)
@@ -50,7 +52,7 @@ struct TransferOverlayView: View {
                         let mbTotal = Double(state.totalBytes) / 1_048_576.0
                         Text(state.totalBytes > 0
                              ? String(format: "%.1f / %.1f MB", mbDone, mbTotal)
-                             : "Starte Transfer...")
+                             : "Starte Transfer…")
                         Spacer()
                         if state.lastSpeedMBps > 0 {
                             Text(String(format: "%.2f MB/s", state.lastSpeedMBps))
@@ -65,9 +67,10 @@ struct TransferOverlayView: View {
             }
             .padding(24)
             .frame(maxWidth: 340)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
             .shadow(radius: 20)
             .padding()
+            .accessibilityAddTraits(.isModal)
         }
     }
 }

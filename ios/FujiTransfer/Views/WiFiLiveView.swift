@@ -4,12 +4,13 @@ import FujiCore
 
 /// Tab 2: WLAN-Live-View, Foto/Video-Aufnahme & Belichtungssteuerung.
 /// Bewusst komplett getrennt vom Bluetooth-Tab, damit immer klar ist,
-/// wann Kamera-WLAN noetig ist und wann schnelles Bluetooth reicht.
+/// wann Kamera-WLAN nötig ist und wann schnelles Bluetooth reicht.
 struct WiFiLiveView: View {
     let store: CameraSessionStore
     let liveView: WiFiLiveViewStore
     let remote: BLERemoteStore
     let isTabActive: Bool
+    @ScaledMetric(relativeTo: .largeTitle) private var heroIconSize: CGFloat = 46
 
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct WiFiLiveView: View {
                 }
             }
             .navigationTitle("Live-View")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(store.isConnected ? .inline : .large)
             .toolbar {
                 if store.isConnected {
                     ToolbarItem(placement: .topBarLeading) {
@@ -44,6 +45,7 @@ struct WiFiLiveView: View {
                         } label: {
                             Image(systemName: liveView.isStreaming ? "pause.circle" : "play.circle")
                         }
+                        .accessibilityLabel(liveView.isStreaming ? "Live-View pausieren" : "Live-View starten")
                         .disabled(liveView.isStarting)
                     }
                 }
@@ -60,23 +62,25 @@ struct WiFiLiveView: View {
 
     private var disconnectedPromptView: some View {
         ScrollView {
-            VStack(spacing: 18) {
+            VStack(spacing: 16) {
                 VStack(spacing: 10) {
-                    ConnectionModeBadge(style: .wifiRequired)
-
                     Image(systemName: "camera.viewfinder")
-                        .font(.system(size: 46))
+                        .font(.system(size: heroIconSize, weight: .regular))
+                        .symbolRenderingMode(.hierarchical)
                         .foregroundStyle(.primary)
-                        .padding(.top, 4)
+                        .accessibilityHidden(true)
 
-                    Text("Live-View & Belichtung ueber WLAN")
+                    Text("Live-View & Belichtung über WLAN")
                         .font(.title3.bold())
                         .multilineTextAlignment(.center)
 
-                    Text("Fuer das Live-Sucherbild, Video-Aufnahme sowie ISO, Blende, Verschlusszeit und Filmsimulation wird eine aktive WLAN-Verbindung zur X-T4 benoetigt.")
+                    Text("Für das Live-Sucherbild, Video-Aufnahme sowie ISO, Blende, Verschlusszeit und Filmsimulation wird eine aktive WLAN-Verbindung zur X-T4 benötigt.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
+
+                    ConnectionModeBadge(style: .wifiRequired)
+                        .padding(.top, 4)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
@@ -85,18 +89,22 @@ struct WiFiLiveView: View {
                 HStack(alignment: .top, spacing: 10) {
                     Image(systemName: "bolt.circle.fill")
                         .font(.title3)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.tint)
+                        .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("Nur schnell ausloesen oder GPS senden?")
+                        Text("Nur schnell auslösen oder GPS senden?")
                             .font(.subheadline.weight(.semibold))
-                        Text("Dafuer brauchst du kein WLAN – nutze einfach den Tab 'BLE-Steuerung' rechts. Das spart Akku und klappt sofort.")
+                        Text("Dafür brauchst du kein WLAN – nutze einfach den Tab „Bluetooth“ rechts. Das spart Akku und klappt sofort.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-                .background(.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 14))
+                .background(
+                    Color(uiColor: .secondarySystemGroupedBackground),
+                    in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+                )
 
                 // Direkte WLAN-Verbindungsaktionen
                 VStack(alignment: .leading, spacing: 12) {
@@ -106,35 +114,37 @@ struct WiFiLiveView: View {
                     if let status = store.bleStatusMessage {
                         Text(status)
                             .font(.footnote.weight(.medium))
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(.tint)
                     }
 
                     Button {
                         Task { await store.wakeWiFiOverBLE(activeBLERemote: remote) }
                     } label: {
-                        HStack {
+                        HStack(spacing: 8) {
                             if store.isBusyBLE { ProgressView().tint(.white) }
                             Text(remote.isConnected
                                  ? "1. WLAN direkt per BLE starten (\(store.savedSSID))"
                                  : "1. WLAN per BLE wecken (\(store.savedSSID))")
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(store.isBusyBLE || store.savedTokenHex.isEmpty)
-
-                    Button {
-                        Task { await store.connectWiFi(activeBLERemote: remote) }
-                    } label: {
-                        HStack {
-                            if store.isConnectingWiFi { ProgressView().tint(.white) }
-                            Text(store.isConnectingWiFi ? "Verbinde mit X-T4..." : "2. Mit Kamera-WLAN verbinden")
                                 .fontWeight(.semibold)
                         }
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.green)
+                    .controlSize(.large)
+                    .disabled(store.isBusyBLE || store.savedTokenHex.isEmpty)
+
+                    Button {
+                        Task { await store.connectWiFi(activeBLERemote: remote) }
+                    } label: {
+                        HStack(spacing: 8) {
+                            if store.isConnectingWiFi { ProgressView() }
+                            Text(store.isConnectingWiFi ? "Verbinde mit X-T4…" : "2. Mit Kamera-WLAN verbinden")
+                                .fontWeight(.semibold)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
                     .disabled(store.isConnectingWiFi)
 
                     Button {
@@ -142,14 +152,18 @@ struct WiFiLiveView: View {
                             UIApplication.shared.open(url)
                         }
                     } label: {
-                        Label("iOS-WLAN-Einstellungen oeffnen", systemImage: "gear")
+                        Label("iOS-WLAN-Einstellungen öffnen", systemImage: "gear")
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
+                    .controlSize(.large)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-                .background(.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+                .background(
+                    Color(uiColor: .secondarySystemGroupedBackground),
+                    in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+                )
 
                 if let err = store.errorMessage {
                     errorBanner(err)
@@ -157,6 +171,7 @@ struct WiFiLiveView: View {
             }
             .padding()
         }
+        .background(Color(uiColor: .systemGroupedBackground))
     }
 
     // MARK: - Verbunden (Live-View & Steuerung)
@@ -173,6 +188,7 @@ struct WiFiLiveView: View {
                         Label("\(shots)", systemImage: "photo.stack")
                             .font(.caption.monospacedDigit())
                             .foregroundStyle(.secondary)
+                            .accessibilityLabel("\(shots) verbleibende Aufnahmen")
                     }
                 }
 
@@ -183,7 +199,7 @@ struct WiFiLiveView: View {
                 if let note = liveView.statusNote {
                     Text(note)
                         .font(.footnote.weight(.medium))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.tint)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
@@ -196,29 +212,31 @@ struct WiFiLiveView: View {
             }
             .padding()
         }
+        .background(Color(uiColor: .systemGroupedBackground))
     }
 
     private var viewfinderCanvas: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 14)
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(Color.black)
 
             if let img = liveView.liveImage {
                 Image(uiImage: img)
                     .resizable()
                     .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             } else {
                 VStack(spacing: 10) {
                     if liveView.isStarting || liveView.isStreaming {
                         ProgressView().tint(.white)
-                        Text(liveView.isStarting ? "Starte Live-View..." : "Warte auf Sucherbild...")
+                        Text(liveView.isStarting ? "Starte Live-View…" : "Warte auf Sucherbild…")
                             .font(.footnote)
                             .foregroundStyle(.white.opacity(0.8))
                     } else {
                         Image(systemName: "video.slash")
                             .font(.title)
                             .foregroundStyle(.white.opacity(0.7))
+                            .accessibilityHidden(true)
                         Button("Live-View starten") {
                             Task { await liveView.startLiveView(using: store) }
                         }
@@ -241,6 +259,7 @@ struct WiFiLiveView: View {
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .background(.black.opacity(0.65), in: Capsule())
+                        .accessibilityLabel("Videoaufnahme aktiv")
                     }
                     Spacer()
                     if liveView.fps > 0.5 {
@@ -282,7 +301,11 @@ struct WiFiLiveView: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
         .padding(.horizontal, 4)
-        .background(.secondary.opacity(0.12), in: RoundedRectangle(cornerRadius: 10))
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+        )
+        .accessibilityElement(children: .combine)
     }
 
     private var captureButtonsRow: some View {
@@ -296,30 +319,40 @@ struct WiFiLiveView: View {
                     } else {
                         Image(systemName: "camera.circle.fill").font(.title3)
                     }
-                    Text("Foto ausloesen")
+                    Text("Foto auslösen")
                         .fontWeight(.semibold)
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
             }
             .buttonStyle(.borderedProminent)
+            .controlSize(.large)
             .disabled(!liveView.isStreaming || liveView.isCapturing || liveView.isRecordingMovie)
+            .sensoryFeedback(.impact(flexibility: .solid), trigger: liveView.isCapturing)
 
-            Button {
-                Task { await liveView.toggleMovieRecording(using: store) }
-            } label: {
-                HStack(spacing: 6) {
-                    Image(systemName: liveView.isRecordingMovie ? "stop.circle.fill" : "record.circle")
-                        .font(.title3)
-                    Text(liveView.isRecordingMovie ? "Stopp" : "Video")
+            if liveView.isRecordingMovie {
+                Button(role: .destructive) {
+                    Task { await liveView.toggleMovieRecording(using: store) }
+                } label: {
+                    Label("Stopp", systemImage: "stop.circle.fill")
                         .fontWeight(.semibold)
+                        .frame(minWidth: 105)
                 }
-                .frame(minWidth: 105)
-                .padding(.vertical, 8)
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+                .controlSize(.large)
+                .disabled(!liveView.isStreaming || liveView.isCapturing)
+            } else {
+                Button {
+                    Task { await liveView.toggleMovieRecording(using: store) }
+                } label: {
+                    Label("Video", systemImage: "record.circle")
+                        .fontWeight(.semibold)
+                        .frame(minWidth: 105)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+                .disabled(!liveView.isStreaming || liveView.isCapturing)
             }
-            .buttonStyle(.borderedProminent)
-            .tint(liveView.isRecordingMovie ? .red : .orange)
-            .disabled(!liveView.isStreaming || liveView.isCapturing)
         }
     }
 
@@ -333,11 +366,13 @@ struct WiFiLiveView: View {
                 value: liveView.status?.formattedFNumber ?? "–",
                 kind: .fNumber
             )
+            Divider()
             stepControlRow(
                 label: "Verschlusszeit",
                 value: liveView.status?.formattedShutterSpeed ?? "–",
                 kind: .shutterSpeed
             )
+            Divider()
             stepControlRow(
                 label: "Belichtung (EV)",
                 value: liveView.status?.formattedExposureBias ?? "–",
@@ -346,11 +381,14 @@ struct WiFiLiveView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+        )
     }
 
     private func stepControlRow(label: String, value: String, kind: FujiStepControlKind) -> some View {
-        HStack {
+        HStack(spacing: 8) {
             Text(label)
                 .font(.subheadline)
             Spacer()
@@ -358,22 +396,24 @@ struct WiFiLiveView: View {
                 Task { await liveView.step(kind, up: false, using: store) }
             } label: {
                 Image(systemName: "minus")
-                    .frame(width: 34, height: 28)
+                    .frame(minWidth: 36, minHeight: 28)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("\(label) verringern")
             .disabled(!liveView.isStreaming || liveView.isUpdatingSetting)
 
             Text(value)
                 .font(.subheadline.bold().monospacedDigit())
-                .frame(minWidth: 72, alignment: .center)
+                .frame(minWidth: 68, alignment: .center)
 
             Button {
                 Task { await liveView.step(kind, up: true, using: store) }
             } label: {
                 Image(systemName: "plus")
-                    .frame(width: 34, height: 28)
+                    .frame(minWidth: 36, minHeight: 28)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("\(label) erhöhen")
             .disabled(!liveView.isStreaming || liveView.isUpdatingSetting)
         }
     }
@@ -400,18 +440,20 @@ struct WiFiLiveView: View {
                         }
                     } label: {
                         HStack(spacing: 4) {
-                            Text(liveView.status?.formattedISO ?? "Waehlen")
+                            Text(liveView.status?.formattedISO ?? "Wählen")
                                 .fontWeight(.medium)
                             Image(systemName: "chevron.up.chevron.down")
                                 .font(.caption2)
                         }
                         .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(.secondary.opacity(0.16), in: RoundedRectangle(cornerRadius: 8))
+                        .padding(.vertical, 8)
+                        .background(Color(uiColor: .tertiarySystemFill), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
                     .disabled(!liveView.isStreaming || liveView.isUpdatingSetting)
                 }
             }
+
+            Divider()
 
             HStack {
                 Text("Filmsimulation")
@@ -430,14 +472,14 @@ struct WiFiLiveView: View {
                         }
                     } label: {
                         HStack(spacing: 4) {
-                            Text(liveView.status?.formattedFilmSimulation ?? "Waehlen")
+                            Text(liveView.status?.formattedFilmSimulation ?? "Wählen")
                                 .fontWeight(.medium)
                             Image(systemName: "chevron.up.chevron.down")
                                 .font(.caption2)
                         }
                         .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(.secondary.opacity(0.16), in: RoundedRectangle(cornerRadius: 8))
+                        .padding(.vertical, 8)
+                        .background(Color(uiColor: .tertiarySystemFill), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
                     .disabled(!liveView.isStreaming || liveView.isUpdatingSetting)
                 }
@@ -445,15 +487,21 @@ struct WiFiLiveView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+        )
     }
 
     private func errorBanner(_ text: String) -> some View {
         HStack(alignment: .top, spacing: 10) {
-            Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.orange)
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundStyle(.orange)
+                .accessibilityHidden(true)
             Text(text).font(.footnote).frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(.orange.opacity(0.14), in: RoundedRectangle(cornerRadius: 14))
+        .background(.orange.opacity(0.14), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .accessibilityElement(children: .combine)
     }
 }
